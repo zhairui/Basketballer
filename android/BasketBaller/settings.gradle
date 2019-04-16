@@ -1,0 +1,1 @@
+include ':app', ':news', ':base', ':commonres', ':login', ':network', ':commonview', ':user', ':commonservice', ':data',':buildSrc'

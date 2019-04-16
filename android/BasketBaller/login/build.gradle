@@ -1,0 +1,20 @@
+apply from:"../component.gradle"
+
+android{
+
+    dataBinding {
+        enabled = true
+    }
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':commonres')
+    implementation project(':base')
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    kapt rootProject.ext.dependencies.arouter_compiler
+    api project(':network')
+    implementation project(':commonservice')
+}
+repositories {
+    mavenCentral()
+}

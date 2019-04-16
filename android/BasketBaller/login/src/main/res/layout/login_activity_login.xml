@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="loginViewModel" type="com.jerry.login.viewmodels.LoginViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="50dp"
+            android:orientation="vertical"
+    >
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/username_input"
+                android:text="@={loginViewModel.username}"
+        />
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_input"
+                android:layout_marginTop="10dp"
+                android:text="@={loginViewModel.password}"
+        />
+
+        <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:onClick="@{loginViewModel.login}"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_login_bg"
+                android:textColor="@color/white"
+        />
+    </LinearLayout>
+
+</layout>

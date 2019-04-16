@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">篮球爱好者</string>
+    <string name="tab_1">新闻</string>
+    <string name="tab_2">视频</string>
+    <string name="tab_3">商城</string>
+    <string name="tab_4">场地</string>
+    <string name="tab_5">我的</string>
+    <string name="username_input">输入手机号</string>
+    <string name="password_input">输入密码</string>
+    <string name="login">登录</string>
+    <string name="empty_data">暂无数据</string>
+</resources>

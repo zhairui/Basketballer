@@ -1,0 +1,10 @@
+apply from:"../component.gradle"
+
+
+
+dependencies {
+    api project(':base')
+    implementation project(':commonres')
+    api rootProject.ext.dependencies.arouter_api
+    kapt rootProject.ext.dependencies.arouter_compiler
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jerry.BasketBaller.mapper.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.jerry.BasketBaller.model.News">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="article_url" jdbcType="VARCHAR" property="article_url" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, article_url, images, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jerry.BasketBaller.model.News">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into news (title, article_url, images,
+      createtime, updatetime)
+    values (#{title,jdbcType=VARCHAR}, #{article_url,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR},
+      now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.jerry.BasketBaller.model.News">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="article_url != null">
+        article_url,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="article_url != null">
+        #{article_url,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        now(),
+      </if>
+      <if test="updatetime != null">
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jerry.BasketBaller.model.News">
+    update news
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="article_url != null">
+        article_url = #{article_url,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = now(),
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jerry.BasketBaller.model.News">
+    update news
+    set title = #{title,jdbcType=VARCHAR},
+      article_url = #{article_url,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectNewsList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from news
+    order by id asc
+  </select>
+</mapper>
